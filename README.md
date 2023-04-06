@@ -48,7 +48,7 @@ _Examples:_
 1.	Happy case:
 ```
 (base) shwethasubbu@Shwethas-Air-2 HW1 % python FileApp.py -s 12000
-Server host name: Shwethas-Air-2 IP address: 192.168.1.155
+Server host name: Shwethas-Air-2 IP address: <ip-address>
 ```
 2.	Invalid port:
 ```
@@ -63,20 +63,20 @@ Replace the arguments with their respective port numbers and IP addresses. Whene
 _Examples:_
 1.	Happy case:
 ```
-(base) shwethasubbu@Shwethas-Air-2 HW1 % python FileApp.py -c B 192.168.1.155 12000 1301 1401
+(base) shwethasubbu@Shwethas-Air-2 HW1 % python FileApp.py -c B <ip-address> 12000 1301 1401
 >>> [Welcome, You are registered.]
 >>>
 ```
 
 2.	Invalid port:
 ```
-(base) shwethasubbu@Shwethas-MacBook-Air-2 HW1 % python FileApp.py -c C 192.168.1.155 12000 1302 66000
+(base) shwethasubbu@Shwethas-MacBook-Air-2 HW1 % python FileApp.py -c C <ip-address> 12000 1302 66000
 [Invalid client TCP port]
 ```
 
 3.	Another client registers:
 ```
-(base) shwethasubbu@Shwethas-Air-2 HW1 % python FileApp.py -c B 192.168.1.155 12000 1301 1401
+(base) shwethasubbu@Shwethas-Air-2 HW1 % python FileApp.py -c B <ip-address> 12000 1301 1401
 >>> [Welcome, You are registered.]
 >>>
 >>> [Client table updated.]
@@ -85,7 +85,7 @@ _Examples:_
 
 4.	Client name already in use by an online client:
 ```
-(base) shwethasubbu@Shwethas-Air-2 HW1 % python FileApp.py -c B 192.168.1.155 12000 1301 1401
+(base) shwethasubbu@Shwethas-Air-2 HW1 % python FileApp.py -c B <ip-address> 12000 1301 1401
 >>> [Registration rejected: Client username already in use.]
 >>>
 ```
@@ -150,8 +150,8 @@ _Examples:_
 ```
 >>> list
 FILENAME        OWNER           IP ADDRESS       TCP PORT
-bar             	B                       192.168.1.155   1401
-foo                     B                       192.168.1.155   1401
+bar             	B             <ip-address>     1401
+foo               B             <ip-address>     1401
 >>>
 ```
 
@@ -181,7 +181,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ```
 Client B – provider’s terminal:
 ```
->>> < Accepting connection request from 192.168.1.155. >
+>>> < Accepting connection request from <ip-address>. >
 < Transferring foo... >
 < foo transferred successfully! >
 < Connection with client C closed>

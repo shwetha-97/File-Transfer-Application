@@ -279,7 +279,7 @@ class Server(object):
                     if client_name in list(self.client_database.keys()):
                         if not self.client_database[client_name][ONLINE_STATUS_FIELD]:
                             self.client_database[client_name][ONLINE_STATUS_FIELD] = True
-                            database_to_send = self.convert_file_names_to_list()
+                            database_to_send = self.convert_file_names_to_list() # JSON cannot serialize sets (filenames) so we need to convert to list
                             message_to_send = json.dumps({"RE_REGISTRATION": database_to_send})
                             self.server_socket.sendto(message_to_send.encode(), client_address)
                             self.broadcast(client_name)  # table update should not be broadcasted to client registering
@@ -287,7 +287,7 @@ class Server(object):
                             self.server_socket.sendto("Invalid".encode(), client_address)
                     else:
                         self.add_client_to_database(info[operation], client_name)
-                        database_to_send = self.convert_file_names_to_list()
+                        database_to_send = self.convert_file_names_to_list() # JSON cannot serialize sets (filenames) so we need to convert to list
                         message_to_send = json.dumps({"NEW_REGISTRATION": database_to_send})
                         self.server_socket.sendto(message_to_send.encode(), client_address)
                         self.broadcast(client_name)  # table update should not be broadcasted to client registering
@@ -333,7 +333,7 @@ class Server(object):
                                                                   1) == 1:
                 retries += 1
                 print(f"Retrying {retries} times")
-                database_to_send = self.convert_file_names_to_list()
+                database_to_send = self.convert_file_names_to_list() # JSON cannot serialize sets (filenames) so we need to convert to list
                 self.server_socket.sendto(json.dumps(database_to_send).encode(), client_address)
 
     def set_files_for_client(self, client_name, file_names):
@@ -358,7 +358,7 @@ class Server(object):
             if self.client_database[client][ONLINE_STATUS_FIELD] and client != to_exclude:
                 client_address = (
                     self.client_database[client][IP_ADDRESS_FIELD], int(self.client_database[client][UDP_PORT_FIELD]))
-                database_to_send = self.convert_file_names_to_list()
+                database_to_send = self.convert_file_names_to_list() # JSON cannot serialize sets (filenames) so we need to convert to list
                 self.server_socket.sendto(json.dumps({"BROADCAST": database_to_send}).encode(), client_address)
 
 
